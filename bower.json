@@ -1,0 +1,26 @@
+{
+  "name": "Imovie",
+  "version": "0.0.1",
+  "homepage": "https://github.com/superpig/Imovie",
+  "authors": [
+    "superpig <940578704@qq.com>"
+  ],
+  "description": "node.js开发电影网站",
+  "main": "app.js",
+  "keywords": [
+    "node.js",
+    "movie"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.2"
+  }
+}

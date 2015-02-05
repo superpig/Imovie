@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+	.container.contentTop
+		.row
+			.col-md-7
+				embed(src="#{movie.flash}", allowFullScreen="true", width="653", height="500", 
+					autostart="true" align="middle", allowScriptAcess="always", type="application/x-shockwave-flash")
+				.panel.panel-default.panelTop
+					.panel-heading
+						h4 评论区
+					.panel-body
+						ul.media-list
+							each item in comments
+								li.media
+									if item.from
+										a.headPhoto.media-left(href="#comments", data-cid="#{item._id}", data-tid="#{item.from._id}")
+											img.img-circle(src="http://img4.duitang.com/uploads/item/201112/01/20111201233950_aLhAG.thumb.600_0.jpg", 
+												style="width: 64px; height: 64px;", alt="...")
+									else 
+										a.headPhoto.media-left(href="#comments", data-cid="#{item._id}")
+											img.img-circle(src="http://img4.duitang.com/uploads/item/201112/01/20111201233950_aLhAG.thumb.600_0.jpg", 
+												style="width: 64px; height: 64px;", alt="...")
+									.media-body
+										if item.from
+											h4.media-heading #{item.from.name}
+										p #{item.content}
+										if item.reply && item.reply.length > 0
+											each reply in item.reply
+												.media 
+													a.headPhoto.media-left(href="#comments",data-cid="#{item._id}", data-tid="#{reply.from._id}")
+														img.img-circle(src="http://img4.duitang.com/uploads/item/201112/01/20111201233950_aLhAG.thumb.600_0.jpg", 
+															style="width: 64px; height: 64px;", alt="...")
+													.media-body
+														h5.media-heading #{reply.from.name} &nbsp;回复&nbsp;#{reply.to.name} :
+														p #{reply.content}
+								hr
+						#comments
+							form#commentForm(method="POST", action="/user/comment")
+								input(type="hidden", name="comment[movie]", value="#{movie._id}")
+								if user
+									input(type="hidden", name="comment[from]", value="#{user._id}")
+								.form-group
+									textarea#textareaId.form-control(name="comment[content]", rows="4")
+								.pull-right
+									if user
+										button.btn.btn-primary(type="submit") 提交
+									else 
+										a.navbar-link(class="btn btn-primary",href="#", data-toggle="modal", data-target="#loginModal") 登录后评论
+			.col-md-5
+				dl.dl-horizontal
+					dt 电影名字
+					dd #{movie.title}
+					dt 导演
+					dd #{movie.director}
+					dt 国家
+					dd #{movie.country}
+					dt 语言
+					dd #{movie.language}
+					dt 上映年份
+					dd #{movie.year}
+					dt 简介
+					dd #{movie.summary}
+	script(src="/js/detail.js")

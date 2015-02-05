@@ -1,0 +1,66 @@
+.navbar.navbar-default.navbar-fixed-top.navbar-inverse
+	.container-fluid
+		.navbar-header
+			a.navbar-brand(href="/") Imovie
+		.collapse.navbar-collapse
+			ul.nav.navbar-nav
+				li
+					a(href='/results?cat=54d368f4dacdcf5831fe40d3&p=0') 爱情片
+				li
+					a(href='/results?cat=54d3690edacdcf5831fe40d4&p=0') 剧情片
+				li
+					a(href='/results?cat=54d36919dacdcf5831fe40d5&p=0') 喜剧片
+			form.navbar-form.navbar-left(method='get', action='/results')
+				.form-group
+					input.form-control(type="text", name='search')
+				button.btn.btn-default(type='submit') 搜索
+			if user
+				p.navbar-text.navbar-right
+					span 欢迎您,#{user.name}
+					span &nbsp;|&nbsp;
+					a.navbar-link(href="/logout") 注销
+					span &nbsp;&nbsp;
+			else 
+				p.navbar-text.navbar-right 
+					a.navbar-link(href="#", data-toggle="modal", data-target="#loginModal") 登录
+					span &nbsp;|&nbsp;
+					a.navbar-link(href="#", data-toggle="modal", data-target="#signupModal") 注册
+					span &nbsp;&nbsp;
+#signupModal.modal.fade(tabindex="-1", aria-hidden="true")
+	.modal-dialog.modal-sm
+		.modal-content
+			form(method="POST", action="/user/regist")
+				.modal-header
+					h2 注册
+				.modal-body
+					.form-group
+						label(for="signupName") 用户名
+						input#signupName.form-control(name="user[name]", type="text")
+					.form-group
+						label(for="signupPassword") 密码
+						input#signupPassword.form-control(name="user[password]", type="text")
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+					button.btn.btn-success(type="submit") 提交
+#loginModal.modal.fade(tabindex="-1", aria-hidden="true")
+	.modal-dialog.modal-sm
+		.modal-content
+			form(method="POST", action="/user/login")
+				.modal-header
+					h2 登录
+				.modal-body
+					.form-group
+						label(for="loginName") 用户名
+						input#loginName.form-control(name="user[name]", type="text")
+					.form-group
+						label(for="loginPassword") 密码
+						input#loginPassword.form-control(name="user[password]", type="text")
+				.modal-footer
+					button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+					button.btn.btn-success(type="submit") 提交
+//- .container
+//- 	.row
+//- 		.page-header
+//- 			h1= title
+			//- middle 文艺爱情片
+

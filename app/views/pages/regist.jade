@@ -1,0 +1,17 @@
+extends ../layout
+
+block content
+  .container.contentTop
+    .row
+      .col-md-4
+        form(method="POST", action="/user/regist")
+          h2 注册
+          .form-group
+            label(for="signupName") 用户名
+            input#signupName.form-control(name="user[name]", type="text")
+          .form-group
+            label(for="signupPassword") 密码
+            input#signupPassword.form-control(name="user[password]", type="text")
+          .text-center
+            button.btn.btn-default(type="button" data-dismiss="modal") 关闭
+            button.btn.btn-success(type="submit") 提交

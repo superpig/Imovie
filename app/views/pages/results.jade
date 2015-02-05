@@ -1,0 +1,32 @@
+extends ../layout
+
+block content
+  .container.contentTop
+    .row
+      .panel.panel-default
+        .panel-heading 
+          h4 #{keyword}
+        .panel-body
+          if movies && movies.length > 0
+            each item in movies
+              .col-md-2.text-center
+                .thumbnail
+                  a(href="/movie/#{item._id}")
+                    if item.poster.indexOf('http:') > -1
+                      img(src="#{item.poster}", alt="#{item.title}", width="150px" height="170px")
+                    else
+                      img(src="/upload/#{item.poster}", alt="#{item.title}", width="150px" height="170px")
+                  .caption
+                    h4 #{item.title}
+                    p: a.btn.btn-primary(href="/movie/#{item._id}", role="button") 看预告片
+      ul.pagination
+        - for (var i = 0; i < totalPage; i++) {
+          - if (currentPage == (i + 1)) {
+              li.active
+                span #{currentPage} 
+            - }
+          - else {
+              li
+                a(href='/results?#{query}&p=#{i}') #{i+1}
+            - } 
+        - }

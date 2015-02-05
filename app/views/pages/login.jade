@@ -1,0 +1,16 @@
+extends ../layout
+
+block content
+  .container.contentTop
+    .row
+      .col-md-4
+        form(method="POST", action="/user/login")
+          h2 登陆
+          .form-group
+            label(for="loginName") 用户名
+            input#loginName.form-control(name="user[name]", type="text")
+          .form-group
+            label(for="loginPassword") 密码
+            input#loginPassword.form-control(name="user[password]", type="text")
+          .text-center
+            button.btn.btn-success(type="submit") 提交

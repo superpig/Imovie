@@ -1,0 +1,14 @@
+/*电影列表的标题和内容位置布局*/
+.table th, .table td {
+	text-align: center;
+}
+
+/*主要内容距离顶部距离*/
+.contentTop {
+  margin-top: 70px;
+}
+
+/* 评论区和视频的间距 */
+.panelTop {
+  margin-top: 30px;
+}
